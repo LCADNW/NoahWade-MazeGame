@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public int playerSpeed = 5;
-
+    public float playerSpeed = 5;
+   
 
     // Start is called before the first frame update
     void Start()
@@ -52,13 +53,30 @@ public class PlayerMovement : MonoBehaviour
         }
         //whenever Player uses WASD, they move in that direction at PlayerSpeed 5. PlayerSpeed is a public, changeable number.
 
-        if (Input.GetKey(KeyCode.Space))
+       
+        //Attempting Jump
+    //   if (Input.GetKey(KeyCode.Space))
         {
-            transform.transform.Translate(Vector3.up * playerSpeed * Time.deltaTime);
+     //       transform.transform.Translate(Vector3.up * playerSpeed * Time.deltaTime);
+            //makes player go UP when pressing Space. As of writing this makes you float into the sky.
         }
 
+        //Attempting Sprint
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+           
+            {
+                    playerSpeed = 15;
+                }
+            
+        }
+        else
+        {
+
+            playerSpeed = 5;
 
 
+        }
 
 
 
