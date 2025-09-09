@@ -6,15 +6,18 @@ using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    float jumpForce = 10;
+    
     public float playerSpeed = 5;
-   
+   Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("bingus");
 
-
+       rb = GetComponent<Rigidbody>();
 
 
 
@@ -54,11 +57,15 @@ public class PlayerMovement : MonoBehaviour
         //whenever Player uses WASD, they move in that direction at PlayerSpeed 5. PlayerSpeed is a public, changeable number.
 
        
-        //Attempting Jump
-    //   if (Input.GetKey(KeyCode.Space))
+      
+       if (Input.GetKeyDown(KeyCode.Space))
         {
-     //       transform.transform.Translate(Vector3.up * playerSpeed * Time.deltaTime);
+          //  transform.transform.Translate(Vector3.up * playerSpeed * Time.deltaTime);
             //makes player go UP when pressing Space. As of writing this makes you float into the sky.
+
+            //YouTube Video
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+
         }
 
         //Attempting Sprint
