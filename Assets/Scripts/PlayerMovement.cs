@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -10,7 +11,11 @@ public class PlayerMovement : MonoBehaviour
     float jumpForce = 10;
     
     public float playerSpeed = 5;
+    public float sprintSpeed = 2;
+    public float playerMaxSpeed = 11;
    Rigidbody rb;
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -18,15 +23,6 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("bingus");
 
        rb = GetComponent<Rigidbody>();
-
-
-
-
-
-
-
-
-
 
     }
 
@@ -37,22 +33,22 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
             {
-            transform.Translate(Vector3.forward * playerSpeed * Time.deltaTime);
+            rb.AddForce(Vector3.forward * playerSpeed, ForceMode.Impulse);
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Translate(Vector3.left * playerSpeed * Time.deltaTime);
+            rb.AddForce(Vector3.left * playerSpeed, ForceMode.Impulse);
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            transform.Translate(Vector3.right * playerSpeed * Time.deltaTime);
+            rb.AddForce(Vector3.right * playerSpeed, ForceMode.Impulse);
         }
 
         if (Input.GetKey(KeyCode.S))
         {
-            transform.Translate(Vector3.back * playerSpeed * Time.deltaTime);
+            rb.AddForce(Vector3.back * playerSpeed, ForceMode.Impulse);
         }
         //whenever Player uses WASD, they move in that direction at PlayerSpeed 5. PlayerSpeed is a public, changeable number.
 
@@ -71,25 +67,22 @@ public class PlayerMovement : MonoBehaviour
         //Attempting Sprint
         if (Input.GetKey(KeyCode.LeftShift))
         {
-           
+            if (playerSpeed <= playerMaxSpeed)
             {
-                    playerSpeed = 15;
-                }
-            
+                playerSpeed *= sprintSpeed;
+            }
         }
         else
         {
+            if (playerSpeed >= playerMaxSpeed)
+            {
+                Debug.Log("works");
+                playerSpeed = 5;
+            }
 
-            playerSpeed = 5;
-
-
+          
         }
-
-
-
     }
-
-
 }
 
 
