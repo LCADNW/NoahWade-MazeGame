@@ -1,0 +1,70 @@
+//using System;
+//using UnityEngine;
+//using UnityEngine.InputSystem;
+
+//[DefaultExecutionOrder(-1000)]
+//public class EntityController : MonoBehaviour
+//{
+//    public PlayerInputActions Controls;
+//    public InputAction ia_Move;
+//    public Func<Vector2> move;
+
+//    public InputAction ia_Pickup;
+//    public Action pickup;
+
+//    public InputAction ia_Drop;
+//    public Action drop;
+
+//    public InputAction ia_Use;
+//    public Action use;
+
+//    public InputAction ia_Dash;
+//    public Action dash;
+
+//    private void Awake()
+//    {
+//        Controls = new PlayerInputActions();
+//    }
+
+//    void OnEnable()
+//    {
+//        ia_Move = Controls.Player.Move;
+//        ia_Move.Enable();
+//        move = () => ia_Move.ReadValue<Vector2>();
+
+//        ia_Pickup = Controls.Player.Pickup;
+//        ia_Pickup.Enable();
+//        ia_Pickup.performed += ctx => pickup?.Invoke();
+
+//        ia_Drop = Controls.Player.Drop;
+//        ia_Drop.Enable();
+//        ia_Drop.performed += ctx => drop?.Invoke();
+
+//        ia_Use = Controls.Player.Use;
+//        ia_Use.Enable();
+//        ia_Use.performed += ctx => use?.Invoke();
+
+//        ia_Dash = Controls.Player.Dash;
+//        ia_Dash.Enable();
+//        ia_Dash.performed += ctx => dash?.Invoke();
+//    }
+
+//    void OnDisable()
+//    {
+//        move = null;
+//        ia_Move?.Disable();
+
+//        pickup = null;
+//        ia_Pickup?.Disable();
+
+//        drop = null;
+//        ia_Drop?.Disable();
+
+//        use = null;
+//        ia_Use?.Disable();
+
+//        dash = null;
+//        ia_Dash?.Disable();
+//    }
+
+//}
