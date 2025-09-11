@@ -5,7 +5,7 @@ using UnityEngine;
 public class Watcher : MonoBehaviour
 {
     Transform targ { get => PlayerSingleton.Instance.transform; }
-    bool alreadyAttacking = false;
+    public bool alreadyAttacking = false;
     [ShowInInspector] bool watching = true;
     [SerializeField] bool canAttack = false;
     [SerializeField] float coolDownTime = 2f;
@@ -20,12 +20,17 @@ public class Watcher : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+    private void Start()
+    {
+        StartCoroutine(Watch());
+    }
+
     private void Update()
     {
         if(!alreadyAttacking || watching)
             transform.LookAt(targ);
 
-        if (!alreadyAttacking && canAttack)
+        if (!alreadyAttacking && canAttack && !watching)
             StartCoroutine(routine: Attack());
 
     }
@@ -34,15 +39,16 @@ public class Watcher : MonoBehaviour
     {
         watching = true;
         yield return new WaitForSeconds(watchTime + Random.Range(4, 10));
-        alreadyAttacking = false;
         watching = false;
     }
 
     IEnumerator Attack()
     {
+        watching = false;
         alreadyAttacking = true;
         AttackFunctionality();
         yield return new WaitForSeconds(coolDownTime);
+        alreadyAttacking = false;
         StartCoroutine(Watch());
     }
 
