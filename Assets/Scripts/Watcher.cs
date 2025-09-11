@@ -30,7 +30,7 @@ public class Watcher : MonoBehaviour
     {
         if (!isInRangeOfPlayer) return;
 
-        if(!alreadyAttacking || watching)
+        if(watching)
             transform.LookAt(targ);
 
         if (!alreadyAttacking && canAttack && !watching)
