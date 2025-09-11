@@ -7,7 +7,8 @@ public class Watcher : MonoBehaviour
     Transform targ { get => PlayerSingleton.Instance.transform; }
     public bool alreadyAttacking = false;
     [ShowInInspector] bool watching = true;
-    [SerializeField] bool canAttack = false;
+    public bool isInRangeOfPlayer = false;
+    public bool canAttack = false;
     [SerializeField] float coolDownTime = 2f;
     [SerializeField] float watchTime = 5f;
     [SerializeField] private float speed = 1.2f;
@@ -27,6 +28,8 @@ public class Watcher : MonoBehaviour
 
     private void Update()
     {
+        if (!isInRangeOfPlayer) return;
+
         if(!alreadyAttacking || watching)
             transform.LookAt(targ);
 

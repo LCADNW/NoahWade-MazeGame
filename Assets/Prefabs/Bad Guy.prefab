@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 6205764257231982654}
   - component: {fileID: 5650240527736808588}
   - component: {fileID: 8293994644692119378}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bad Guy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
