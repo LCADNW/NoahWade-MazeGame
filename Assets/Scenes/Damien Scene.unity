@@ -1805,8 +1805,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 5
-  sprintSpeed: 5
+  sprintSpeed: 3
   playerMaxSpeed: 11
+  playerStamina: 200
+  playerStaminaDrain: 10
 --- !u!114 &1593680549
 MonoBehaviour:
   m_ObjectHideFlags: 0
