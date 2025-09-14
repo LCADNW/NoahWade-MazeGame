@@ -10,9 +10,9 @@ public class PlayerMovement : MonoBehaviour
 
     float jumpForce = 10;
     
-    public float playerSpeed = 5;
+    public float playerSpeed = 4;
     public float sprintSpeed = 2;
-    public float playerMaxSpeed = 11;
+    public float playerMaxSpeed = 9;
     public float playerStamina = 200;
     public float playerStaminaDrain = 10;
     Rigidbody rb;
@@ -107,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
             //After Stamina reaches 0, then playerSpeed is permanetly set to 3.
             if (playerStamina <= 0)
             {
-                playerSpeed = 3;
+                playerSpeed = 2;
                 sprintSpeed = 1;
             }
         }
