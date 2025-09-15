@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static System.Collections.Specialized.BitVector32;
 
 public class MusicPlayer : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class MusicPlayer : MonoBehaviour
 
     public int currentIndexOfAmbience;
     public AudioClip[] ambiences;
+    public AudioClip chaseMusic;
+    int directPlayPreviousSection = 0;
+    public bool inChase = false;
 
     private void Start()
     {
@@ -22,11 +26,12 @@ public class MusicPlayer : MonoBehaviour
     {
         while (true)
         {
-            if(currentIndexOfAmbience != currentSection)
-            {
-                PlayTheCurrent();
-                currentIndexOfAmbience = currentSection;
-            }
+            if (!inChase)
+                if(currentIndexOfAmbience != currentSection)
+                {
+                    PlayTheCurrent();
+                    currentIndexOfAmbience = currentSection;
+                }
             yield return new WaitForSecondsRealtime(2);
         }
     }
@@ -34,6 +39,21 @@ public class MusicPlayer : MonoBehaviour
     void PlayTheCurrent()
     {
         audioSource.clip = ambiences[currentSection];
+        audioSource.Play();
+    }
+
+    public void AdvanceToSection(int section)
+    {
+        if (section <= currentSection) return;
+        currentSection = section;
+        currentIndexOfAmbience = currentSection;
+        PlayTheCurrent();
+    }
+
+    public void PlayChase()
+    {
+        inChase = true;
+        audioSource.clip = chaseMusic;
         audioSource.Play();
     }
 

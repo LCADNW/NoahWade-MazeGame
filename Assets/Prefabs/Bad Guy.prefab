@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alreadyAttacking: 0
+  isInRangeOfPlayer: 0
   canAttack: 1
   coolDownTime: 2
   watchTime: 5

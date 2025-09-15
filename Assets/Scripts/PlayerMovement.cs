@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         if (Input.GetKey(KeyCode.W))
-            {
+        {
             rb.AddForce(Vector3.forward * playerSpeed, ForceMode.Impulse);
         }
 

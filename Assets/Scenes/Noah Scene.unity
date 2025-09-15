@@ -4466,6 +4466,75 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -22.808, y: 104.908, z: 64.042}
+--- !u!1 &1372117936
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1372117937}
+  - component: {fileID: 1372117939}
+  - component: {fileID: 1372117938}
+  m_Layer: 6
+  m_Name: Chase Radius
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1372117937
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372117936}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 37.0127, y: 37.0127, z: 37.0127}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1593680553}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1372117938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372117936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42b512862896e434e9b9b9b7ac7a32ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  watchers:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!135 &1372117939
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372117936}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 119
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1395256996
 GameObject:
   m_ObjectHideFlags: 0
@@ -4972,6 +5041,7 @@ GameObject:
   - component: {fileID: 1593680548}
   - component: {fileID: 1593680554}
   - component: {fileID: 1593680555}
+  - component: {fileID: 1593680556}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -5095,6 +5165,7 @@ Transform:
   - {fileID: 650171205}
   - {fileID: 317599422}
   - {fileID: 1992391835}
+  - {fileID: 1372117937}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1593680554
@@ -5137,9 +5208,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1183589282}
-  jumpscareSound: {fileID: 8300000, guid: a8d9105f38dd0004aa839bd3372e55c3, type: 3}
+  jumpscareSound: {fileID: 8300000, guid: 264c66f09c4624a6ea0a27f39e883833, type: 3}
   jumpsacreImages:
   - {fileID: 208140221}
+--- !u!114 &1593680556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593680547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efd612800a56676459fae3e19179d180, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSection: 0
+  audioSource: {fileID: 1183589282}
+  currentIndexOfAmbience: 0
+  ambiences:
+  - {fileID: 8300000, guid: 80f747bfc81d1da4e885fa896f85a0b0, type: 3}
+  chaseMusic: {fileID: 8300000, guid: e0e1f4e344026d44daa5a04955b8bc20, type: 3}
+  inChase: 0
 --- !u!1 &1629722080
 GameObject:
   m_ObjectHideFlags: 0
