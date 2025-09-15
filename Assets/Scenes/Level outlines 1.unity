@@ -5485,8 +5485,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 75
-  orthographic: 0
-  orthographic size: 10
+  orthographic: 1
+  orthographic size: 13
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -5511,7 +5511,7 @@ Transform:
   m_GameObject: {fileID: 1183589277}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 20.9, y: 14.160001, z: 152.8}
+  m_LocalPosition: {x: 20.9, y: 14.160001, z: 200.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7181,11 +7181,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 604a82e9ddfed67479a88b3712aec324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 4
-  sprintSpeed: 2
-  playerMaxSpeed: 9
-  playerStamina: 200
-  playerStaminaDrain: 10
+  currentSpeed: 25
+  initialSpeed: 25
+  sprintSpeedGain: 4.5
+  maxSprintSpeed: 45
+  stamina: 200
+  staminaDrain: 10
 --- !u!114 &1593680549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7230,7 +7231,7 @@ Transform:
   m_GameObject: {fileID: 1593680547}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.03, y: 2.56, z: 152.62}
+  m_LocalPosition: {x: 21.03, y: 2.56, z: 200.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

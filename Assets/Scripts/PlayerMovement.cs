@@ -9,12 +9,14 @@ public class PlayerMovement : MonoBehaviour
 {
 
     float jumpForce = 10;
-    
-    public float playerSpeed = 4;
-    public float sprintSpeed = 2;
-    public float playerMaxSpeed = 9;
-    public float playerStamina = 200;
-    public float playerStaminaDrain = 10;
+
+    public float currentSpeed = 4;
+    public float initialSpeed = 10f;
+    public float sprintSpeedGain = 2f;
+    float initialMaxSprintSpeed;
+    public float maxSprintSpeed = 30f;
+    public float stamina = 200;
+    public float staminaDrain = 10;
     Rigidbody rb;
 
 
@@ -24,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         Debug.Log("bingus");
-
+        initialMaxSprintSpeed = maxSprintSpeed;
        rb = GetComponent<Rigidbody>();
 
     }
@@ -35,80 +37,50 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         if (Input.GetKey(KeyCode.W))
-            {
-            rb.AddForce(Vector3.forward * playerSpeed, ForceMode.Impulse);
+        {
+            rb.AddForce(Vector3.forward * currentSpeed, ForceMode.Impulse);
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            rb.AddForce(Vector3.left * playerSpeed, ForceMode.Impulse);
+            rb.AddForce(Vector3.left * currentSpeed, ForceMode.Impulse);
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            rb.AddForce(Vector3.right * playerSpeed, ForceMode.Impulse);
+            rb.AddForce(Vector3.right * currentSpeed, ForceMode.Impulse);
         }
 
         if (Input.GetKey(KeyCode.S))
         {
-            rb.AddForce(Vector3.back * playerSpeed, ForceMode.Impulse);
+            rb.AddForce(Vector3.back * currentSpeed, ForceMode.Impulse);
         }
-        //whenever Player uses WASD, they move in that direction at PlayerSpeed 5. PlayerSpeed is a public, changeable number.
 
        
       
        if (Input.GetKeyDown(KeyCode.Space))
-        {
-          //  transform.transform.Translate(Vector3.up * playerSpeed * Time.deltaTime);
-            //makes player go UP when pressing Space. As of writing this makes you float into the sky.
-
-            //YouTube Video
+       {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-
-        }
-
-
-        ////Sprint
-        //if (Input.GetKey(KeyCode.LeftShift))
-        //{
-        //    if (playerSpeed <= playerMaxSpeed)
-        //    {
-        //        playerSpeed *= sprintSpeed;
-        //    }
-        //}
-        //else
-        //{
-        //    if (playerSpeed >= playerMaxSpeed)
-        //    {
-        //        Debug.Log("works");
-        //        playerSpeed = 5;
-        //    }
+       }
 
 
-
-
-            //Sprint
-            if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            playerStamina = playerStamina - playerStaminaDrain * Time.deltaTime;
+            stamina -= staminaDrain * Time.deltaTime;
  
-            if (playerSpeed <= playerMaxSpeed)
-            {
-                playerSpeed *= sprintSpeed;
-            }
+            if (currentSpeed <= maxSprintSpeed)
+                currentSpeed += sprintSpeedGain;
+
         }
-             else
+        else
         {
-            if (playerSpeed >= playerMaxSpeed)
+            if (currentSpeed >= initialSpeed)
+                currentSpeed -= sprintSpeedGain * 2;
+
+            if (stamina <= 0)
             {
-                Debug.Log("works");
-                playerSpeed = 5;
-            }
-            //After Stamina reaches 0, then playerSpeed is permanetly set to 3.
-            if (playerStamina <= 0)
-            {
-                playerSpeed = 2;
-                sprintSpeed = 1;
+                currentSpeed = initialSpeed * 0.7f;
+                maxSprintSpeed = initialMaxSprintSpeed * 0.7f;
             }
         }
     }
