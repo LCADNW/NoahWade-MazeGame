@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerRotate : MonoBehaviour
 {
     public Vector3 lookAtPos;
+    public LayerMask floor;
     private void Update()
     {
         MouseLookRotate();
@@ -12,14 +14,14 @@ public class PlayerRotate : MonoBehaviour
 
     void MouseLookRotate()
     {
-        Plane grnd = new Plane(Vector3.up, Vector3.zero);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if(grnd.Raycast(ray, out float enter))
+        if (Physics.Raycast(ray, out RaycastHit hit, 500f, floor))
         {
-            Vector3 hitpoint = ray.GetPoint(enter);
-            lookAtPos = hitpoint;
-            transform.LookAt(lookAtPos);
+            Vector3 pos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+            lookAtPos = pos;
+            float targY = Quaternion.LookRotation(pos - transform.position, Vector3.up).eulerAngles.y;
+            transform.rotation = Quaternion.Euler(0f, targY, 0f);
         }
     }
 
