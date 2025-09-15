@@ -5438,7 +5438,7 @@ GameObject:
   - component: {fileID: 1183589283}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5678,7 +5678,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -7162,6 +7162,7 @@ GameObject:
   - component: {fileID: 1593680555}
   - component: {fileID: 1593680556}
   - component: {fileID: 1593680557}
+  - component: {fileID: 1593680558}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -7323,6 +7324,19 @@ MonoBehaviour:
   interactCallback:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1593680558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593680547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86e93ff55a9f7244b40402d1c1ce557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookAtPos: {x: 0, y: 0, z: 0}
 --- !u!1 &1629722080
 GameObject:
   m_ObjectHideFlags: 0
