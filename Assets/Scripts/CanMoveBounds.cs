@@ -9,13 +9,15 @@ public class CanMoveBounds : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if ((enemyMask.value & (1 << other.gameObject.layer)) == 0) return;
-        other.GetComponent<Watcher>().isInRangeOfPlayer = true;
+        if(other.GetComponent<Watcher>())
+            other.GetComponent<Watcher>().isInRangeOfPlayer = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
         if ((enemyMask.value & (1 << other.gameObject.layer)) == 0) return;
-        other.GetComponent<Watcher>().isInRangeOfPlayer = false;
+        if (other.GetComponent<Watcher>())
+            other.GetComponent<Watcher>().isInRangeOfPlayer = false;
 
     }
 }
