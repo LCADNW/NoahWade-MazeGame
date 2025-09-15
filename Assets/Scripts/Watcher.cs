@@ -10,7 +10,8 @@ public class Watcher : MonoBehaviour
     public bool isInRangeOfPlayer = false;
     public bool canAttack = false;
     [SerializeField] float coolDownTime = 2f;
-    [SerializeField] float watchTime = 5f;
+    [SerializeField] float minWatchTime = 5f;
+    [SerializeField] float maxWatchTime = 10f;
     [SerializeField] private float speed = 1.2f;
 
     Rigidbody rb;
@@ -41,8 +42,10 @@ public class Watcher : MonoBehaviour
     IEnumerator Watch()
     {
         watching = true;
-        yield return new WaitForSeconds(watchTime + Random.Range(4, 10));
+        yield return new WaitForSeconds(Random.Range(minWatchTime, maxWatchTime));
         watching = false;
+        if (!canAttack)
+            StartCoroutine(Watch());
     }
 
     IEnumerator Attack()
