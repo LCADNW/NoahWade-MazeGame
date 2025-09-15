@@ -5,84 +5,70 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+
+
 public class PlayerMovement : MonoBehaviour
 {
-
-    float jumpForce = 10;
-    
-    public float playerSpeed = 5;
-    public float sprintSpeed = 2;
-    public float playerMaxSpeed = 11;
+    public float initialPlayerSpeed = 7f;
+    public float currentPlayerSpeed = 7f;
+    public float sprintIncrease = 1;
+    public float maxSprintSpeed = 12f;
+    public float rotSpeed;
    Rigidbody rb;
 
-    
-
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        //Debug.Log("bingus");
-
-       rb = GetComponent<Rigidbody>();
-
+        rb = GetComponent<Rigidbody>();
     }
 
-
+    private void FixedUpdate()
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            if (currentPlayerSpeed <= maxSprintSpeed)
+                currentPlayerSpeed += sprintIncrease;
+        }
+        else if (currentPlayerSpeed >= initialPlayerSpeed)
+            currentPlayerSpeed -= sprintIncrease;
+    }
 
     // Update is called once per frame
     void Update()
     {
+        Vector3 dir = new Vector3(0,0,0);
+
         if (Input.GetKey(KeyCode.W))
         {
-            rb.AddForce(Vector3.forward * playerSpeed, ForceMode.Impulse);
+            dir = transform.forward;
+            rb.AddForce(dir * currentPlayerSpeed, ForceMode.Impulse);
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            rb.AddForce(Vector3.left * playerSpeed, ForceMode.Impulse);
+            dir = -transform.right;
+            RotatePlayerInLookDir(dir);
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            rb.AddForce(Vector3.right * playerSpeed, ForceMode.Impulse);
+            dir = transform.right;
+            RotatePlayerInLookDir(dir);
         }
 
         if (Input.GetKey(KeyCode.S))
         {
-            rb.AddForce(Vector3.back * playerSpeed, ForceMode.Impulse);
-        }
-        //whenever Player uses WASD, they move in that direction at PlayerSpeed 5. PlayerSpeed is a public, changeable number.
-
-       
-      
-       if (Input.GetKeyDown(KeyCode.Space))
-        {
-          //  transform.transform.Translate(Vector3.up * playerSpeed * Time.deltaTime);
-            //makes player go UP when pressing Space. As of writing this makes you float into the sky.
-
-            //YouTube Video
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-
-        }
-
-        //Attempting Sprint
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            if (playerSpeed <= playerMaxSpeed)
-            {
-                playerSpeed *= sprintSpeed;
-            }
-        }
-        else
-        {
-            if (playerSpeed >= playerMaxSpeed)
-            {
-               // Debug.Log("works");
-                playerSpeed = 5;
-            }
-
-          
+            dir = -transform.forward;
+            rb.AddForce(dir * currentPlayerSpeed, ForceMode.Impulse);
         }
     }
+
+    void RotatePlayerInLookDir(Vector3 rotDir)
+    {
+        if (rotDir == Vector3.zero) return;
+        Quaternion targetRot = Quaternion.LookRotation(rotDir);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotSpeed * Time.deltaTime);
+    }
+
 }
 
 
