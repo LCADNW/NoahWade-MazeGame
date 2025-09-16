@@ -183,11 +183,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 604a82e9ddfed67479a88b3712aec324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 5
-  sprintSpeed: 3
-  playerMaxSpeed: 11
-  playerStamina: 200
-  playerStaminaDrain: 10
+  currentSpeed: 4
+  initialSpeed: 10
+  sprintSpeedGain: 2
+  maxSprintSpeed: 30
+  stamina: 200
+  staminaDrain: 10
 --- !u!114 &201876385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,7 +283,7 @@ Transform:
   m_GameObject: {fileID: 201876382}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.62753916, z: -0, w: 0.77858496}
-  m_LocalPosition: {x: 137.15, y: 19.5, z: -22.13}
+  m_LocalPosition: {x: 137.15, y: 19.7, z: -22.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2048,6 +2049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbd3bb59294862c4c8a4a32721540a22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zOffset: -5
   hiehgt: 10
 --- !u!1 &1697421842
 GameObject:
@@ -2080,6 +2082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbd3bb59294862c4c8a4a32721540a22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zOffset: -5
   hiehgt: 10
 --- !u!81 &1697421844
 AudioListener:
