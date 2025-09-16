@@ -20,8 +20,8 @@ public class PlayerRotate : MonoBehaviour
         {
             Vector3 pos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
             lookAtPos = pos;
-            float targY = Quaternion.LookRotation(pos - transform.position, Vector3.up).eulerAngles.y;
-            transform.rotation = Quaternion.Euler(0f, targY, 0f);
+            Quaternion targetRot = Quaternion.LookRotation(pos - transform.position, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * 10f);
         }
     }
 

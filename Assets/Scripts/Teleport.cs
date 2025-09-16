@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class Teleport : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Teleport : MonoBehaviour
    public GameObject teleportLocation;
    public Image panel;
     bool isAlreadyTeleporting = false;
+    public UnityEvent OnTeleportComplete;
 
 
    public void Warp()
@@ -37,6 +39,8 @@ public class Teleport : MonoBehaviour
         }
         
         PlayerSingleton.Instance.GetComponent<Transform>().position = teleportLocation.transform.position;
+        OnTeleportComplete?.Invoke();
+
 
         while (increment > 0.1f)
         {
