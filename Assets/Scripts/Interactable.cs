@@ -6,10 +6,12 @@ using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
 {
+    public bool canInteract = true;
     public bool automatic = false;
     public bool canInteractMoreThanOnce = false;
     bool interactedWith = false;
     public UnityEvent onInteract;
+    public UnityEvent onCantInteract;
     public LayerMask player;
 
     private void Start()
@@ -20,6 +22,11 @@ public class Interactable : MonoBehaviour
 
     public void Interact()
     {
+        if (!canInteract)
+        {
+            onCantInteract?.Invoke();
+            return;
+        }
         onInteract?.Invoke();
     }
 
@@ -32,7 +39,7 @@ public class Interactable : MonoBehaviour
         if (other.GetComponent<PlayerSingleton>())
         {
             if (!automatic)
-                PlayerSingleton.Instance.GetComponent<PlayerInteractor>().InRange(onInteract);
+                PlayerSingleton.Instance.GetComponent<PlayerInteractor>().InRange(Interact);
             else
                 onInteract?.Invoke();
         }
@@ -49,5 +56,10 @@ public class Interactable : MonoBehaviour
     void InteractedWith()
     {
         interactedWith = true;
+    }
+
+    public void ToggleCanInteract(bool val)
+    {
+        canInteract = val;
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class PlayerInteractor : MonoBehaviour
 {
     public bool canInteract;
-    public UnityEvent interactCallback;
+    Action interactCallback;
 
     private void Update()
     {
@@ -24,7 +24,7 @@ public class PlayerInteractor : MonoBehaviour
 
     }
 
-    public void InRange(UnityEvent callback)
+    public void InRange(Action callback)
     {
         interactCallback = callback;
         print($"In range with {callback.ToString()}");

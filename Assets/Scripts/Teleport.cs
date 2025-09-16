@@ -34,13 +34,7 @@ public class Teleport : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
             fade.a = increment;
             panel.color = fade;
-
-
         }
-
-    
-        
-        
         
         PlayerSingleton.Instance.GetComponent<Transform>().position = teleportLocation.transform.position;
 

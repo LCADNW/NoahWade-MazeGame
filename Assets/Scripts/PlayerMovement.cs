@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     float jumpForce = 10;
-
+    public bool movementEnabled = false;
     public float currentSpeed = 4;
     public float initialSpeed = 10f;
     public float sprintSpeedGain = 2f;
@@ -31,11 +31,16 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    public void ToggleMovement(bool toggle)
+    {
+        movementEnabled = toggle;
+    }
 
 
     // Update is called once per frame
     void Update()
     {
+        if (!movementEnabled) return;
         if (Input.GetKey(KeyCode.W))
         {
             rb.AddForce(Vector3.forward * currentSpeed, ForceMode.Impulse);
@@ -67,15 +72,19 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             stamina -= staminaDrain * Time.deltaTime;
- 
+
             if (currentSpeed <= maxSprintSpeed)
                 currentSpeed += sprintSpeedGain;
+            else
+                currentSpeed = maxSprintSpeed;
 
         }
         else
         {
             if (currentSpeed >= initialSpeed)
                 currentSpeed -= sprintSpeedGain * 2;
+            else
+                currentSpeed = initialSpeed;
 
             if (stamina <= 0)
             {
