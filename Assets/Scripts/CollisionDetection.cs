@@ -9,6 +9,7 @@ public class CollisionDetection : MonoBehaviour
     {
         if ((playerMask.value & (1 << other.gameObject.layer)) == 0) return;
         if (gameObject.GetComponentInParent<Watcher>().alreadyAttacking == false) return;
+        if (!other.GetComponent<Jumpscare>()) return;
         other.GetComponent<Jumpscare>().GetJumpscared();
 
     }

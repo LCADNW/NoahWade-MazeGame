@@ -34156,10 +34156,10 @@ MonoBehaviour:
   alreadyAttacking: 0
   isInRangeOfPlayer: 0
   canAttack: 0
-  coolDownTime: 0.5
+  coolDownTime: 0.7
   minWatchTime: 1
   maxWatchTime: 2
-  speed: 130
+  speed: 120
 --- !u!54 &356361663535760809
 Rigidbody:
   m_ObjectHideFlags: 0

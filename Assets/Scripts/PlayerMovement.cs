@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     float jumpForce = 10;
     public bool movementEnabled = false;
+    public bool canSprint = true;
     public float currentSpeed = 4;
     public float initialSpeed = 10f;
     public float sprintSpeedGain = 2f;
@@ -36,6 +37,11 @@ public class PlayerMovement : MonoBehaviour
         movementEnabled = toggle;
     }
 
+    public void ToggleSprint(bool toggle)
+    {
+        canSprint = toggle;
+    }
+
     private void FixedUpdate()
     {
         if (!movementEnabled) return;
@@ -59,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector3.back * currentSpeed, ForceMode.Impulse);
         }
 
+        if (!canSprint) return;
         if (Input.GetKey(KeyCode.LeftShift))
         {
             stamina -= staminaDrain * Time.deltaTime;

@@ -44,7 +44,7 @@ public class MusicPlayer : MonoBehaviour
 
     public void AdvanceToSection(int section)
     {
-        if (section <= currentSection) return;
+        if (section < currentSection) return;
         currentSection = section;
         currentIndexOfAmbience = currentSection;
         PlayTheCurrent();

@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level outlines 2.unity
     guid: 6a360eafebe37e244b75dfc1fe051eec
+  - enabled: 1
+    path: Assets/Scenes/End.unity
+    guid: 123c7f499b53a7348a52ca579d6ecd85
   m_configObjects: {}
