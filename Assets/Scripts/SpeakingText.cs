@@ -19,10 +19,10 @@ public class SpeakingText : MonoBehaviour
 
     IEnumerator CreateElipsiesEffect()
     {
-        for(int i = 6; i > 0; i--)
+        for(int i = 5; i > 0; i--)
         {
-            yield return new WaitForSeconds(0.75f);
-            text.text = text.text + ".";
+            yield return new WaitForSeconds(0.5f);
+            text.text = text.text + " .";
         }
         StartCoroutine(FadeTextThenDelete());
     }
@@ -36,7 +36,7 @@ public class SpeakingText : MonoBehaviour
             color.a = iteration;
             text.color = color;
             iteration -= 0.012f;
-            yield return new WaitForSeconds(0.02f);
+            yield return new WaitForSeconds(0.01f);
         }
         Destroy(gameObject);
     }

@@ -6,11 +6,13 @@ using UnityEngine.Events;
 
 public class PlayerInteractor : MonoBehaviour
 {
+    public bool interactionEnabled;
     public bool canInteract;
     Action interactCallback;
 
     private void Update()
     {
+        if (!interactionEnabled) return;
         if (!canInteract) return;
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -35,5 +37,10 @@ public class PlayerInteractor : MonoBehaviour
     {
         interactCallback = null;
         canInteract = false;
+    }
+
+    public void ToggleInteraction(bool val)
+    {
+        interactionEnabled = val;
     }
 }

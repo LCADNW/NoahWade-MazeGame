@@ -36,9 +36,7 @@ public class PlayerMovement : MonoBehaviour
         movementEnabled = toggle;
     }
 
-
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
         if (!movementEnabled) return;
         if (Input.GetKey(KeyCode.W))
@@ -61,14 +59,6 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector3.back * currentSpeed, ForceMode.Impulse);
         }
 
-       
-      
-       if (Input.GetKeyDown(KeyCode.Space))
-       {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-       }
-
-
         if (Input.GetKey(KeyCode.LeftShift))
         {
             stamina -= staminaDrain * Time.deltaTime;
@@ -81,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if (currentSpeed >= initialSpeed)
+            if (currentSpeed > initialSpeed)
                 currentSpeed -= sprintSpeedGain * 2;
             else
                 currentSpeed = initialSpeed;
@@ -93,6 +83,8 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
+
 }
 
 
